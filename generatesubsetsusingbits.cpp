@@ -1,31 +1,36 @@
-//generate subsets using bitmasking
-#include<iostream>
-#include<bits/stdc++.h>
+/#include<iostream>
 using namespace std;
-void generatesubsets(int no,int *a)
+void generatesubset(int no,int*a)
 {
     int bitpos=0;
     while(no>0)
     {
-        int lastbit=(no&1);
-        if(lastbit==1)
+        if(no&1==1)
         {
-            //include it in the subset
             cout<<a[bitpos]<<" ";
         }
         bitpos++;
         no=no>>1;
+
     }
     cout<<endl;
-
 }
-//generate 2^n nos starting from 0 to 2^n-1;
-void generateallsubsets(int *a,int n)
+void generateallsubsets(int*a,int n)
 {
-   for(int no=0;no<(1<<n);no++)
-   {
-      generatesubsets(no,a);
-   }
-   cout<<endl;
+    for(int no=0;no<(1<<n);no++)
+    {
+        generatesubset(no,a);
+    }
 }
-
+int main()
+{
+    int n;
+    cin>>n;
+    int a[n];
+    for(int i=0;i<n;i++)
+    {
+        cin>>a[i];
+    }
+    generateallsubsets(a,n);
+     
+}
